@@ -26,8 +26,13 @@ photo1 = PhotoImage(file=r'C:\Users\hima\OneDrive\Desktop\python_project1\Microp
 
 def translate():
     language_1 = textbox1.get("1.0", "end-1c")
+    
     lan1 = auto_detect.get()
+     messagebox.showerror("Language Translator 2.0", "Please choose a valid language")
+        
     lan2 = choose_language.get()
+    if lan2 not in choose_language['values']:
+        messagebox.showerror("Language Translator 2.0", "Please choose a valid language")
 
     if language_1 == "":
         messagebox.showerror("Language Translator 2.0", "Please fill up the box")
@@ -81,13 +86,13 @@ def clear():
 
 
 var = tk.StringVar()
-auto_detect = ttk.Combobox(root, width=20, textvariable=var, state="readonly", font=('sans-serif', 10, 'bold'))
+auto_detect = ttk.Combobox(root, width=20, textvariable=var, state="readandwrite", font=('sans-serif', 10, 'bold'))
 auto_detect['values'] = list(LANGUAGES.values())
 auto_detect.place(x=30, y=70)
 auto_detect.current(0)
 
 var1 = tk.StringVar()
-choose_language = ttk.Combobox(root, width=20, textvariable=var1, state='readonly', font=('Arial', 10, 'bold'))
+choose_language = ttk.Combobox(root, width=20, textvariable=var1, state='readandwrite', font=('Arial', 10, 'bold'))
 
 choose_language['values'] = list(LANGUAGES.values())
 
