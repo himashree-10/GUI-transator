@@ -78,8 +78,15 @@ def buttonclick():
 
         except sr.RequestError:
             print('Could not request results from Google Speech Recognition Service')
-
-
+            
+def Exit():
+    ask = messagebox.askquestion(title='Language Translator 2.0', message='Do you want to quit?')
+    if ask == 'yes':
+        root.destroy()
+    else:
+        pass
+    
+   
 def clear():
     textbox1.delete(1.0, 'end')
     textbox2.delete(1.0, 'end')
@@ -116,5 +123,9 @@ speak.place(x=190, y=70)
 
 translate_speech = Button(root, image=photo, relief=RIDGE, font=('verdana', 10, 'bold'), cursor='hand2',command=Translate_it)
 translate_speech.place(x=450, y=70)
+
+exit_it = Button(root, text='Exit', relief=RIDGE, font=('verdana', 10, 'bold'), cursor='hand2',
+                 command=Exit)
+exit_it.place(x=505, y=320)
 
 root.mainloop()
