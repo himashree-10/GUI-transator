@@ -78,9 +78,23 @@ def buttonclick():
 
         except sr.RequestError:
             print('Could not request results from Google Speech Recognition Service')
-            
+          
+
+def wiki():
+    language_1 = textbox1.get("1.0", "end-1c")
+    lan1 = auto_detect.get()
+    lan2 = choose_language.get()
+    translator = Translator()
+    output = translator.translate(text=language_1, src=lan1, dest=lan2)
+    f"{output.origin} ({output.src}) --> {output.text} ({output.dest})"
+    if textbox2!= '':
+        webbrowser.open('https://www.google.com/search?q=' + output.text)
+    else:
+        pass
+        
+        
 def Exit():
-    ask = messagebox.askquestion(title='Language Translator 2.0', message='Do you want to quit?')
+    ask = messagebox.askquestion(title='Language Translator 2.0', message='Do you want to quit?', icon='question')
     if ask == 'yes':
         root.destroy()
     else:
@@ -127,5 +141,11 @@ translate_speech.place(x=450, y=70)
 exit_it = Button(root, text='Exit', relief=RIDGE, font=('verdana', 10, 'bold'), cursor='hand2',
                  command=Exit)
 exit_it.place(x=505, y=320)
+
+search = Button(root, text='search', relief=FLAT, font=('verdana', 10, 'bold'), cursor='hand2', bg='white',
+                command=wiki)
+search.place(x=440, y=240)
+
+root.wm_attributes('-topmost', 1)
 
 root.mainloop()
