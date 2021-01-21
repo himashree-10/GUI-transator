@@ -9,21 +9,25 @@ import os
 from langdetect import detect
 from gtts import gTTS
 
+#creating the appearance of the language translator application
 root = tk.Tk()
 
 root.title("Language Translator 2.0")
 root.geometry('550x350')
 root.minsize(550, 350)
 root.configure(bg="black")
+#downdload an image of icon format
 root.iconbitmap(r'C:\Users\hima\Downloads\mic.ico')
 
 app_name = Label(root, text='Language Translator', font=('oswald', 26), bg='black', fg='grey', height=2)
 app_name.pack(side=TOP, fill=BOTH, pady=0)
 version = Label(root, text='2.O', fg='grey', bg='black').place(x=450, y=49)
 
+#images in the png format
 photo = PhotoImage(file=r'C:\Users\hima\OneDrive\Desktop\python_project1\Microphone.png').subsample(15, 15)
 photo1 = PhotoImage(file=r'C:\Users\hima\OneDrive\Desktop\python_project1\Microphone.png').subsample(15, 15)
 
+#translating the given input 
 def translate():
     language_1 = textbox1.get("1.0", "end-1c")
     
@@ -42,7 +46,7 @@ def translate():
         f"{output.origin} ({output.src}) --> {output.text} ({output.dest})"
         textbox2.insert('end', output.text)
 
-
+#translated output in the form of speech 
 def Translate_it():
     language_1 = textbox1.get("1.0", "end-1c")
     lan1 = auto_detect.get()
@@ -55,7 +59,7 @@ def Translate_it():
     result.save("Welcome.mp3")
     os.system("Welcome.mp3")
 
-
+#indicating the user to start and stop speaking 
 def buttonclick():
     mixer.init()
     mixer.music.load(r'C:\Users\hima\Downloads\voice-input-master\voice-input-master\chime1.mp3')
@@ -79,7 +83,7 @@ def buttonclick():
         except sr.RequestError:
             print('Could not request results from Google Speech Recognition Service')
           
-
+#to give the meaning using the search engine 
 def wiki():
     language_1 = textbox1.get("1.0", "end-1c")
     lan1 = auto_detect.get()
@@ -92,7 +96,7 @@ def wiki():
     else:
         pass
         
-        
+#throwing an messagebox to quit         
 def Exit():
     ask = messagebox.askquestion(title='Language Translator 2.0', message='Do you want to quit?', icon='question')
     if ask == 'yes':
